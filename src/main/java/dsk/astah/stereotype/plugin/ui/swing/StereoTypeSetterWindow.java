@@ -1,19 +1,19 @@
-package dsk.astah.stereotype.plugin;
+package dsk.astah.stereotype.plugin.ui.swing;
 
 import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.editor.TransactionManager;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.InvalidUsingException;
-import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.view.IDiagramViewManager;
 import java.awt.EventQueue;
 import java.util.Arrays;
 import javax.swing.JFrame;
 
-public class StereoTypeSetter extends JFrame {
+public class StereoTypeSetterWindow extends JFrame {
 
-    public StereoTypeSetter() {
+    public StereoTypeSetterWindow() {
         initComponents();
+        this.getRootPane().setDefaultButton(this.addButton);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,36 +81,18 @@ public class StereoTypeSetter extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        TransactionManager.beginTransaction();
-        try {
-            IDiagramViewManager diagramViewManager = AstahAPI.getAstahAPI().getViewManager().getDiagramViewManager();
-            Arrays.stream(diagramViewManager.getSelectedElements()).forEach(element -> {
-                if (element instanceof INamedElement) {
-                    INamedElement namedElement = (INamedElement) element;
-                    System.out.println(namedElement.getName());
-                }
-                try {
-                    element.removeStereotype(this.inputStereotype.getText());
-                } catch (InvalidEditingException e) {
-                    e.printStackTrace();
-                }
-            });
-            TransactionManager.endTransaction();
-        } catch (InvalidUsingException | ClassNotFoundException e) {
-            TransactionManager.abortTransaction();
-            e.printStackTrace();
-        }
+        this.removeStereotype(this.inputStereotype.getText());
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        this.addStereotype(this.inputStereotype.getText());
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void addStereotype(String name) {
         TransactionManager.beginTransaction();
         try {
             IDiagramViewManager diagramViewManager = AstahAPI.getAstahAPI().getViewManager().getDiagramViewManager();
             Arrays.stream(diagramViewManager.getSelectedElements()).forEach(element -> {
-                if (element instanceof INamedElement) {
-                    INamedElement namedElement = (INamedElement) element;
-                    System.out.println(namedElement.getName());
-                }
                 try {
                     element.addStereotype(this.inputStereotype.getText());
                 } catch (InvalidEditingException e) {
@@ -122,11 +104,29 @@ public class StereoTypeSetter extends JFrame {
             TransactionManager.abortTransaction();
             e.printStackTrace();
         }
-    }//GEN-LAST:event_addButtonActionPerformed
+    }
+
+    private void removeStereotype(String name) {
+        TransactionManager.beginTransaction();
+        try {
+            IDiagramViewManager diagramViewManager = AstahAPI.getAstahAPI().getViewManager().getDiagramViewManager();
+            Arrays.stream(diagramViewManager.getSelectedElements()).forEach(element -> {
+                try {
+                    element.removeStereotype(this.inputStereotype.getText());
+                } catch (InvalidEditingException e) {
+                    e.printStackTrace();
+                }
+            });
+            TransactionManager.endTransaction();
+        } catch (InvalidUsingException | ClassNotFoundException e) {
+            TransactionManager.abortTransaction();
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
-            new StereoTypeSetter().setVisible(true);
+            new StereoTypeSetterWindow().setVisible(true);
         });
     }
 

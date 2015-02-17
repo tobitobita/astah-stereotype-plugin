@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-   <extension point="com.change_vision.astah.ui.actionSets">
-      <actionSet
-            label="%action_set_label"
-            visible="true"
-            id="dsk_astah_stereotype.actionSet">
-         <menu
-               id="dsk_astah_stereotype"
-               label="%menu_group"
-               path="tool/dsk_astah_stereotype">
-         </menu>
-         <action
+    <extension point="com.change_vision.astah.ui.actionSets">
+        <actionSet id="dsk.astah.stereotype.plugin.actionSet">
+            <menu
+                id="dsk_astah_stereotype"
+                label="%menu_group"
+                path="edit/dsk_astah_stereotype">
+            </menu>
+            <action
+                id="dsk_astah_stereotype"
                 label="%menu_label"
-               icon="icons/sample.gif"
-               class="dsk.astah.stereotype.plugin.TemplateAction"
-               tooltip="%menu_tooltip"
-               menubarPath="tool/dsk_astah_stereotype/"
-               id="dsk_astah_stereotype">
-         </action>
-     </actionSet>
-   </extension>
+                menubarPath="edit/dsk_astah_stereotype/"
+                class="dsk.astah.stereotype.plugin.action.StereoTypeSetterAction"
+            >
+            </action>
+        </actionSet>
+    </extension>
 </plugin>
