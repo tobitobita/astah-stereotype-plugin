@@ -6,4 +6,6 @@
 
 ※Java8でしか動きません。
 
+[ダウンロード](https://github.com/tobitobita/astah-stereotype-plugin/blob/master/lib/dsk.astah.stereotype-1.0.jar "ダウンロード")  
+
 ![サンプル](https://raw.githubusercontent.com/tobitobita/astah-stereotype-plugin/master/sample.png)
