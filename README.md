@@ -5,3 +5,5 @@
 [編集] - [ステレオタイプの編集...] でウィンドウを表示します。 
 
 ※Java8でしか動きません。
+
+![サンプル](https://raw.githubusercontent.com/tobitobita/astah-stereotype-plugin/master/sample.png)
