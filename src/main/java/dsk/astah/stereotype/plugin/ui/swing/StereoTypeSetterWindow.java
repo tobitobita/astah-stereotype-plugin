@@ -1,15 +1,12 @@
 package dsk.astah.stereotype.plugin.ui.swing;
 
-import com.change_vision.jude.api.inf.AstahAPI;
-import com.change_vision.jude.api.inf.editor.TransactionManager;
-import com.change_vision.jude.api.inf.exception.InvalidEditingException;
-import com.change_vision.jude.api.inf.exception.InvalidUsingException;
-import com.change_vision.jude.api.inf.view.IDiagramViewManager;
+import dsk.astah.stereotype.plugin.service.StereotypeService;
 import java.awt.EventQueue;
-import java.util.Arrays;
 import javax.swing.JFrame;
 
 public class StereoTypeSetterWindow extends JFrame {
+
+    private final StereotypeService stereotypeService = new SwingStereotypeService();
 
     public StereoTypeSetterWindow() {
         initComponents();
@@ -81,48 +78,12 @@ public class StereoTypeSetterWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        this.removeStereotype(this.inputStereotype.getText());
+        this.stereotypeService.removeStereotype(this.inputStereotype.getText());
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        this.addStereotype(this.inputStereotype.getText());
+        this.stereotypeService.addStereotype(this.inputStereotype.getText());
     }//GEN-LAST:event_addButtonActionPerformed
-
-    private void addStereotype(String name) {
-        TransactionManager.beginTransaction();
-        try {
-            IDiagramViewManager diagramViewManager = AstahAPI.getAstahAPI().getViewManager().getDiagramViewManager();
-            Arrays.stream(diagramViewManager.getSelectedElements()).forEach(element -> {
-                try {
-                    element.addStereotype(this.inputStereotype.getText());
-                } catch (InvalidEditingException e) {
-                    e.printStackTrace();
-                }
-            });
-            TransactionManager.endTransaction();
-        } catch (InvalidUsingException | ClassNotFoundException e) {
-            TransactionManager.abortTransaction();
-            e.printStackTrace();
-        }
-    }
-
-    private void removeStereotype(String name) {
-        TransactionManager.beginTransaction();
-        try {
-            IDiagramViewManager diagramViewManager = AstahAPI.getAstahAPI().getViewManager().getDiagramViewManager();
-            Arrays.stream(diagramViewManager.getSelectedElements()).forEach(element -> {
-                try {
-                    element.removeStereotype(this.inputStereotype.getText());
-                } catch (InvalidEditingException e) {
-                    e.printStackTrace();
-                }
-            });
-            TransactionManager.endTransaction();
-        } catch (InvalidUsingException | ClassNotFoundException e) {
-            TransactionManager.abortTransaction();
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
