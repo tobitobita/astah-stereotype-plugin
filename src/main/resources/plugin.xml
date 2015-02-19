@@ -2,15 +2,10 @@
 <plugin>
     <extension point="com.change_vision.astah.ui.actionSets">
         <actionSet id="dsk.astah.stereotype.plugin.actionSet">
-            <menu
-                id="dsk_astah_stereotype"
-                label="%menu_group"
-                path="edit/dsk_astah_stereotype">
-            </menu>
             <action
                 id="dsk_astah_stereotype"
                 label="%menu_label"
-                menubarPath="edit/dsk_astah_stereotype/"
+                menubarPath="edit/arrange_depth"
                 class="dsk.astah.stereotype.plugin.action.StereoTypeSetterAction"
             >
             </action>

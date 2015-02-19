@@ -17,6 +17,7 @@ public class StereoTypeSetterWindow extends JDialog {
     }
 
     private void initComponents() {
+        this.setTitle("ステレオタイプ設定");
         this.setSize(new Dimension(364, 138));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

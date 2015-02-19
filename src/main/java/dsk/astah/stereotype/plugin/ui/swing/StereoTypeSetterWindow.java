@@ -12,6 +12,7 @@ public class StereoTypeSetterWindow extends JDialog {
     public StereoTypeSetterWindow(Window owner) {
         super(owner);
         initComponents();
+        this.setTitle("ステレオタイプ設定");
         this.getRootPane().setDefaultButton(this.addButton);
     }
 
