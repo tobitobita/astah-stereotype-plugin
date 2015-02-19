@@ -6,9 +6,13 @@ import dsk.astah.stereotype.plugin.ui.fx.StereoTypeSetterWindow;
 
 public class StereoTypeSetterAction implements IPluginActionDelegate {
 
+    private StereoTypeSetterWindow stereotypeSetter;
+
     @Override
     public Object run(IWindow window) throws UnExpectedException {
-        StereoTypeSetterWindow stereotypeSetter = new StereoTypeSetterWindow();
+        if (stereotypeSetter == null) {
+            stereotypeSetter = new StereoTypeSetterWindow(window.getParent());
+        }
         stereotypeSetter.setVisible(true);
         return null;
     }

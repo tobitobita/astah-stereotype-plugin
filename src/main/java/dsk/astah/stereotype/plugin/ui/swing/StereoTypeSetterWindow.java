@@ -2,13 +2,15 @@ package dsk.astah.stereotype.plugin.ui.swing;
 
 import dsk.astah.stereotype.plugin.service.StereotypeService;
 import java.awt.EventQueue;
-import javax.swing.JFrame;
+import java.awt.Window;
+import javax.swing.JDialog;
 
-public class StereoTypeSetterWindow extends JFrame {
+public class StereoTypeSetterWindow extends JDialog {
 
     private final StereotypeService stereotypeService = new SwingStereotypeService();
 
-    public StereoTypeSetterWindow() {
+    public StereoTypeSetterWindow(Window owner) {
+        super(owner);
         initComponents();
         this.getRootPane().setDefaultButton(this.addButton);
     }
@@ -86,8 +88,11 @@ public class StereoTypeSetterWindow extends JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     public static void main(String args[]) {
-        EventQueue.invokeLater(() -> {
-            new StereoTypeSetterWindow().setVisible(true);
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new StereoTypeSetterWindow(null).setVisible(true);
+            }
         });
     }
 

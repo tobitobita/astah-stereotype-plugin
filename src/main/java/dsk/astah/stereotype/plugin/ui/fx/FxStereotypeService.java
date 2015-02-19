@@ -9,16 +9,22 @@ public class FxStereotypeService implements StereotypeService {
     private final StereotypeService stereotypeService = new SwingStereotypeService();
 
     @Override
-    public void addStereotype(String name) {
-        EventQueue.invokeLater(() -> {
-            stereotypeService.addStereotype(name);
+    public void addStereotype(final String name) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                stereotypeService.addStereotype(name);
+            }
         });
     }
 
     @Override
-    public void removeStereotype(String name) {
-        EventQueue.invokeLater(() -> {
-            stereotypeService.removeStereotype(name);
+    public void removeStereotype(final String name) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                stereotypeService.removeStereotype(name);
+            }
         });
     }
 }
