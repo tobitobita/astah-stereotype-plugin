@@ -4,7 +4,7 @@
 
 [編集] - [ステレオタイプの編集...] でウィンドウを表示します。 
 
-※Java8でしか動きません。
+※pro、uml 6.9以上で確認  
 
 [ダウンロード](https://github.com/tobitobita/astah-stereotype-plugin/blob/master/lib/dsk.astah.stereotype-1.0.1.jar?raw=true "ダウンロード")  
 
